@@ -46,7 +46,7 @@ DimPlot(object = S.O.RNA, label = TRUE, reduction = 'umap') + NoLegend()
 
 S.O.gam<-subset(S.O.RNA, idents='3')
 
-saveRDS(S.O.gam, '../S.O.exp')
+saveRDS(S.O.gam, '../S.O.exp.rds')
 
 # published data
 gam_file<-read.csv("../scRNAseq_Pf/Fig1-10X-data.csv", sep=";")
@@ -74,4 +74,4 @@ DimPlot(object = S.O.gam, label = TRUE, reduction = 'umap') + NoLegend()
 S.O.gam<-AddMetaData(S.O.gam, meta)
 Idents(S.O.gam)<-'Cell_Type'
 
-saveRDS(S.O.gam, '../S.O.pub')
+saveRDS(S.O.gam, '../S.O.pub.rds')
