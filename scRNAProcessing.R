@@ -44,8 +44,6 @@ S.O.RNA <- prep_S.O(S.O.RNA)
 DimPlot(S.O.RNA, reduction = 'pca')
 DimPlot(object = S.O.RNA, label = TRUE, reduction = 'umap') + NoLegend()
 
-S.O.gam<-subset(S.O.RNA, idents='3')
-
 saveRDS(S.O.gam, '../S.O.exp.rds')
 
 # published data
