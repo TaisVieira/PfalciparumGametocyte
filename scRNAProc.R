@@ -36,7 +36,7 @@ S.O.RNA<-CreateSeuratObject(counts = expr, min.cells = 10, min.features = 100)
 VlnPlot(S.O.RNA, features = c("nFeature_RNA", "nCount_RNA"), ncol = 2)
 FeatureScatter(S.O.RNA, feature1 = "nCount_RNA", feature2 = "nFeature_RNA")
 quant1<-quantile(S.O.RNA$nFeature_RNA, probs = c(0.1,0.98))
-quant2<-quantile(S.O.RNA$nCount_RNA, probs = c(0.1,.98))
+quant2<-quantile(S.O.RNA$nCount_RNA, probs = c(0.1,0.98))
 S.O.RNA<-subset(S.O.RNA, subset = nFeature_RNA > quant1[1] & nFeature_RNA < quant1[2] & 
                   nCount_RNA > quant2[1] & nCount_RNA < quant2[2])
 S.O.RNA <- prep_S.O(S.O.RNA)
