@@ -5,5 +5,5 @@ Exploration of Plasmodium falciparum gametocyte's genetic expression profile.
 * scRNAIntegration: integrates experimental data with published gametocyte data using MCA stage labels for IDC. 
 * pseudotimeFit: separates cells of interest from the integrated object, fits a pseudotime curve using slingshot and creates a pseudotime matrix of gene expression.
 * splineFit: creates gene expression plots using predicted values from pseudotime gene expression using splines.
-* util_funcs: prep_S.O function, integrate_S.O, getPcaUmapMetaData .
+* util_funcs: functions prep_S.O, integrate_S.O, getPcaUmapMetaData .
  
