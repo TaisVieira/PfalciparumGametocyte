@@ -41,4 +41,22 @@ integrate_S.O<-function(S.O.list, ref.dataset){
   S.O.integrated <- FindNeighbors(S.O.integrated, dims = 1:10, reduction = 'pca')
   S.O.integrated <- FindClusters(S.O.integrated, resolution = 0.5)
   S.O.integrated <- RunUMAP(S.O.integrated, dims = 1:13)
+  
+  return(S.O.integrated)
+}
+
+getPcaUmapMetaData <- function(S.O){
+  pc <- S.O@reductions$pca@cell.embeddings
+  pc <- data.frame(pc) %>% dplyr::mutate(Sample = rownames(pc)) %>% 
+    transmute(Sample = Sample, PC_1 = PC_1, PC_2 = PC_2, PC_3 = PC_3)
+  umap <- S.O@reductions$umap@cell.embeddings
+  umap <- data.frame(umap) %>% dplyr::mutate(Sample = rownames(umap)) %>% 
+    transmute(Sample = Sample, UMAP_1 = UMAP_1, UMAP_2 = UMAP_2, UMAP_3 = UMAP_3)
+  
+  meta.data <- data.frame(Sample = rownames(S.O@meta.data), clusters = S.O@meta.data$seurat_clusters,
+                          stage = S.O@meta.data$stage, orig.ident = S.O@meta.data$orig.ident)
+  meta.data <- left_join(meta.data,
+                         pc, by = 'Sample')
+  meta.data <- left_join(meta.data, umap, by = 'Sample')
+  return(meta.data)  
 }
